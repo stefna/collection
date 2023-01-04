@@ -1,0 +1,23 @@
+{
+	"name": "stefna/ds-collection",
+	"type": "library",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"license": "mit",
+	"authors": [
+		{
+			"name": "Andreas Sundqvist",
+			"email": "andreas@stefna.is"
+		}
+	],
+	"require": {
+		"php": "^8.0",
+		"ext-ds": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Stefna\\Collection\\": "src/"
+		}
+	},
+	"description": ""
+}
