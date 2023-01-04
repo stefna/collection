@@ -9,9 +9,9 @@ use Traversable;
 
 /**
  * @template T of object
- * @implements AssocCollection<T>
+ * @implements MapCollection<T>
  */
-abstract class AbstractAssocCollection implements AssocCollection
+abstract class AbstractMapCollection implements MapCollection
 {
 	/** @var Map<string, T> */
 	protected Map $data;
@@ -170,14 +170,19 @@ abstract class AbstractAssocCollection implements AssocCollection
 		}
 	}
 
-	public function filter(callable $filter): AssocCollection
+	public function filter(callable $filter): static
 	{
 		$newCollection = clone $this;
 		$newCollection->data = $this->data->filter($filter);
 		return $newCollection;
 	}
 
-	public function map(callable $callback): AssocCollection
+	/**
+	 * @template TCallbackReturn of object
+	 * @param callable(string, T):TCallbackReturn $callback
+	 * @return MapCollection<TCallbackReturn>
+	 */
+	public function map(callable $callback): MapCollection
 	{
 		$newData = $this->data->map($callback);
 		$collection = new static(get_class($newData->first()));
@@ -186,7 +191,7 @@ abstract class AbstractAssocCollection implements AssocCollection
 		return $collection;
 	}
 
-	public function merge(AssocCollection ...$collections): AssocCollection
+	public function merge(Collection ...$collections): static
 	{
 		$newCollection = $this->data;
 		foreach ($collections as $index => $collection) {

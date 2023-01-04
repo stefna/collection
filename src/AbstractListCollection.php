@@ -8,9 +8,9 @@ use Traversable;
 
 /**
  * @template T of object
- * @implements Collection<T>
+ * @implements ListCollection<T>
  */
-abstract class AbstractCollection implements Collection
+abstract class AbstractListCollection implements ListCollection
 {
 	/** @var Vector<T> */
 	protected Vector $data;
@@ -157,14 +157,14 @@ abstract class AbstractCollection implements Collection
 		return $this->data->last();
 	}
 
-	public function filter(callable $filter): Collection
+	public function filter(callable $filter): static
 	{
 		$newCollection = clone $this;
 		$newCollection->data = $this->data->filter($filter);
 		return $newCollection;
 	}
 
-	public function map(callable $callback): Collection
+	public function map(callable $callback): ListCollection
 	{
 		$newData = $this->data->map($callback);
 		$collection = new static(get_class($newData->first()));
@@ -173,7 +173,7 @@ abstract class AbstractCollection implements Collection
 		return $collection;
 	}
 
-	public function merge(Collection ...$collections): Collection
+	public function merge(Collection ...$collections): static
 	{
 		$newCollection = $this->data;
 		foreach ($collections as $index => $collection) {

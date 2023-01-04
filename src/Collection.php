@@ -4,26 +4,10 @@ namespace Stefna\Collection;
 
 /**
  * @template T of object
- * @extends \ArrayAccess<int, T>
- * @extends \IteratorAggregate<int, T>
+ * @extends \IteratorAggregate<array-key, T>
  */
-interface Collection extends \ArrayAccess, \Countable, \IteratorAggregate
+interface Collection extends \Countable, \IteratorAggregate
 {
-	/**
-	 * @phpstan-param T $element
-	 */
-	public function add(object $element): bool;
-
-	/**
-	 * @phpstan-param T $element
-	 */
-	public function remove(object $element): bool;
-
-	/**
-	 * @phpstan-param T $element
-	 */
-	public function contains(object $element): bool;
-
 	/**
 	 * @return class-string
 	 */
@@ -42,27 +26,23 @@ interface Collection extends \ArrayAccess, \Countable, \IteratorAggregate
 	 * @return T|null
 	 */
 	public function first();
+
 	/**
 	 * @return T|null
 	 */
 	public function last();
 
-	/**
-	 * @param callable(T): bool $filter
-	 * @return Collection<T>
-	 */
-	public function filter(callable $filter): Collection;
+	public function filter(callable $filter): static;
 
 	/**
 	 * @template TCallbackReturn of object
-	 * @param callable(T):TCallbackReturn $callback
+	 * @param callable():TCallbackReturn $callback
 	 * @return Collection<TCallbackReturn>
 	 */
 	public function map(callable $callback): Collection;
 
 	/**
 	 * @param Collection<T> ...$collections
-	 * @return Collection<T>
 	 */
-	public function merge(Collection ...$collections): Collection;
+	public function merge(Collection ...$collections): static;
 }
