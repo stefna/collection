@@ -56,7 +56,7 @@ trait ScalarMapTrait
 	}
 
 	/**
-	 * @return array<string, mixed>
+	 * @return array<string, mixed>|\ArrayAccess<string, mixed>
 	 */
-	abstract public function getAllData(): array;
+	abstract public function getAllData(): array|\ArrayAccess;
 }
