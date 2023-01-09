@@ -115,10 +115,7 @@ final class ScalarMapTest extends TestCase
 		return new class implements ScalarMap {
 			use ScalarMapTrait;
 
-			/**
-			 * @return array<string, scalar>
-			 */
-			public function getAllData(): array
+			public function getRawValue(string $key): mixed
 			{
 				return [
 					'testString' => 'test',
@@ -136,7 +133,7 @@ final class ScalarMapTest extends TestCase
 					'testBoolFromOffFalse' => 'off',
 					'testBoolFromFalseString' => 'false',
 					'testBoolUnknownStringFalse' => 'random',
-				];
+				][$key] ?? null;
 			}
 		};
 	}

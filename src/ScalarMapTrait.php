@@ -6,12 +6,12 @@ trait ScalarMapTrait
 {
 	public function has(string $key): bool
 	{
-		return isset($this->getAllData()[$key]);
+		return $this->getRawValue($key) !== null;
 	}
 
 	public function getString(string $key, ?string $default = null): ?string
 	{
-		$value = $this->getAllData()[$key] ?? $default;
+		$value = $this->getRawValue($key) ?? $default;
 		if (!is_scalar($value)) {
 			return $default;
 		}
@@ -20,7 +20,7 @@ trait ScalarMapTrait
 
 	public function getInt(string $key, ?int $default = null): ?int
 	{
-		$value = $this->getAllData()[$key] ?? $default;
+		$value = $this->getRawValue($key) ?? $default;
 		if (is_numeric($value)) {
 			return (int)$value;
 		}
@@ -29,7 +29,7 @@ trait ScalarMapTrait
 
 	public function getFloat(string $key, ?float $default = null): ?float
 	{
-		$value = $this->getAllData()[$key] ?? $default;
+		$value = $this->getRawValue($key) ?? $default;
 		if (is_numeric($value)) {
 			return (float)$value;
 		}
@@ -38,7 +38,7 @@ trait ScalarMapTrait
 
 	public function getBool(string $key, ?bool $default = null): ?bool
 	{
-		$value = $this->getAllData()[$key] ?? $default;
+		$value = $this->getRawValue($key) ?? $default;
 		if (is_bool($value) || $value === null) {
 			return $value;
 		}
@@ -55,8 +55,5 @@ trait ScalarMapTrait
 		], true);
 	}
 
-	/**
-	 * @return array<string, mixed>|\ArrayAccess<string, mixed>
-	 */
-	abstract public function getAllData(): array|\ArrayAccess;
+	abstract public function getRawValue(string $key): mixed;
 }
