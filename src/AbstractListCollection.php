@@ -19,7 +19,7 @@ abstract class AbstractListCollection implements ListCollection
 	 * @param class-string<T> $collectionType
 	 * @param array<T>|Vector<T> $data
 	 */
-	final public function __construct(
+	public function __construct(
 		protected string $collectionType,
 		Vector|array $data = [],
 	) {
