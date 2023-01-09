@@ -17,11 +17,11 @@ abstract class AbstractListCollection implements ListCollection
 
 	/**
 	 * @param class-string<T> $collectionType
-	 * @param array<T>|Vector<T> $data
+	 * @param iterable<T> $data
 	 */
 	public function __construct(
 		protected string $collectionType,
-		Vector|array $data = [],
+		iterable $data = [],
 	) {
 		$this->data = new Vector();
 		// Invoke offsetSet() for each value added; in this way, sub-classes
@@ -167,6 +167,7 @@ abstract class AbstractListCollection implements ListCollection
 	public function map(callable $callback): ListCollection
 	{
 		$newData = $this->data->map($callback);
+		// @phpstan-ignore-next-line
 		$collection = new static(get_class($newData->first()));
 		// @phpstan-ignore-next-line
 		$collection->data = $newData;

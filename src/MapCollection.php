@@ -35,4 +35,9 @@ interface MapCollection extends \ArrayAccess, Collection
 	 * @return MapCollection<TCallbackReturn>
 	 */
 	public function map(callable $callback): MapCollection;
+
+	/**
+	 * @return ListCollection<T>
+	 */
+	public function toList(): ListCollection;
 }

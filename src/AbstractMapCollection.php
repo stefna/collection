@@ -20,7 +20,7 @@ abstract class AbstractMapCollection implements MapCollection
 	 * @param class-string<T> $collectionType
 	 * @param array<string, T>|Map<string, T> $data
 	 */
-	final public function __construct(
+	public function __construct(
 		protected string $collectionType,
 		Map|array $data = [],
 	) {
@@ -112,6 +112,12 @@ abstract class AbstractMapCollection implements MapCollection
 		return $this->data->toArray();
 	}
 
+	public function toList(): ListCollection
+	{
+		/** @var GenericListCollection<T> */
+		return new GenericListCollection($this->collectionType, $this);
+	}
+
 	public function isEmpty(): bool
 	{
 		return $this->data->isEmpty();
@@ -185,6 +191,7 @@ abstract class AbstractMapCollection implements MapCollection
 	public function map(callable $callback): MapCollection
 	{
 		$newData = $this->data->map($callback);
+		// @phpstan-ignore-next-line
 		$collection = new static(get_class($newData->first()));
 		// @phpstan-ignore-next-line
 		$collection->data = $newData;
