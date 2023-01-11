@@ -101,7 +101,7 @@ final class ScalarMapTest extends TestCase
 		$map = $this->createMap();
 		$value = $map->getBool('testBoolNotFound', true);
 		$this->assertIsBool($value);
-		$this->assertSame(true, $value);
+		$this->assertTrue($value);
 	}
 
 	public function testGetBoolNotFound(): void
@@ -138,6 +138,9 @@ final class ScalarMapTest extends TestCase
 		};
 	}
 
+	/**
+	 * @return array<string, array{0:string,1:bool}>
+	 */
 	public function boolKeys(): array
 	{
 		return [

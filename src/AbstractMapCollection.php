@@ -140,7 +140,7 @@ abstract class AbstractMapCollection implements MapCollection
 		if (is_string($element)) {
 			return $this->data->remove($element, null) !== null;
 		}
-		$elementPairs = $this->data->filter(fn ($key, $value) => $value === $element)->pairs();
+		$elementPairs = $this->data->filter(fn (mixed $key, object $value) => $value === $element)->pairs();
 		/** @var Pair<string, T> $elementPair */
 		foreach ($elementPairs as $elementPair) {
 			$this->data->remove($elementPair->key, null);
