@@ -184,9 +184,7 @@ abstract class AbstractListCollection implements ListCollection
 	public function map(callable $callback): ListCollection
 	{
 		$newData = $this->data->map($callback);
-		// @phpstan-ignore-next-line
-		$collection = new static(get_class($newData->first()));
-		// @phpstan-ignore-next-line
+		$collection = new GenericListCollection(get_class($newData->first()));
 		$collection->data = $newData;
 		return $collection;
 	}
