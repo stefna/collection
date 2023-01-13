@@ -11,6 +11,7 @@ final class ScalarMapTest extends TestCase
 	public function testGetStringIsString(): void
 	{
 		$map = $this->createMap();
+		$this->assertTrue($map->has('testString'));
 		$value = $map->getString('testString');
 		$this->assertIsString($value);
 	}
@@ -92,7 +93,6 @@ final class ScalarMapTest extends TestCase
 	{
 		$map = $this->createMap();
 		$value = $map->getBool($key);
-		$this->assertIsBool($value);
 		$this->assertSame($expected, $value);
 	}
 
@@ -133,13 +133,14 @@ final class ScalarMapTest extends TestCase
 					'testBoolFromOffFalse' => 'off',
 					'testBoolFromFalseString' => 'false',
 					'testBoolUnknownStringFalse' => 'random',
+					'testBoolWithNoneScalarValue' => ['random' => 'strange'],
 				][$key] ?? null;
 			}
 		};
 	}
 
 	/**
-	 * @return array<string, array{0:string,1:bool}>
+	 * @return array<string, array{0:string,1:null|bool}>
 	 */
 	public function boolKeys(): array
 	{
@@ -154,6 +155,7 @@ final class ScalarMapTest extends TestCase
 			'testBoolFromOffFalse' => ['testBoolFromOffFalse', false],
 			'testBoolFromFalseString' => ['testBoolFromFalseString', false],
 			'testBoolUnknownStringFalse' => ['testBoolUnknownStringFalse', false],
+			'testBoolWithNoneScalarValue' => ['testBoolWithNoneScalarValue', null],
 		];
 	}
 }
