@@ -133,7 +133,7 @@ abstract class AbstractListCollection implements ListCollection
 	public function add(object $element): bool
 	{
 		if (!$element instanceof $this->collectionType) {
-			throw new \InvalidArgumentException('Invalid type for collection. Expected: ' . $this->collectionType);
+			throw new \TypeError('Invalid type for collection. Expected: ' . $this->collectionType);
 		}
 		$this->data->push($element);
 		return true;

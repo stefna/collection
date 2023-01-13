@@ -135,7 +135,7 @@ abstract class AbstractMapCollection implements MapCollection
 	public function add(string $key, object $element): bool
 	{
 		if (!$element instanceof $this->collectionType) {
-			throw new \InvalidArgumentException('Invalid type for collection. Expected: ' . $this->collectionType);
+			throw new \TypeError('Invalid type for collection. Expected: ' . $this->collectionType);
 		}
 		$this->data->put($key, $element);
 		return true;
