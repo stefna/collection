@@ -197,9 +197,7 @@ abstract class AbstractMapCollection implements MapCollection
 	public function map(callable $callback): MapCollection
 	{
 		$newData = $this->data->map($callback);
-		// @phpstan-ignore-next-line
-		$collection = new static(get_class($newData->first()));
-		// @phpstan-ignore-next-line
+		$collection = new GenericMapCollection(get_class($newData->first()->value));
 		$collection->data = $newData;
 		return $collection;
 	}
