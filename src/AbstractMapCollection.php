@@ -13,17 +13,24 @@ use Traversable;
  */
 abstract class AbstractMapCollection implements MapCollection
 {
+	/** @var class-string<T> */
+	protected static string $defaultCollectionType;
+
+	/** @var class-string<T> */
+	protected string $collectionType;
+
 	/** @var Map<string, T> */
 	protected Map $data;
 
 	/**
-	 * @param class-string<T> $collectionType
 	 * @param array<string, T>|Map<string, T> $data
 	 */
 	public function __construct(
-		protected string $collectionType,
 		Map|array $data = [],
 	) {
+		if (!isset($this->collectionType) && isset(self::$defaultCollectionType)) {
+			$this->collectionType = self::$defaultCollectionType;
+		}
 		$this->data = new Map();
 		// Invoke offsetSet() for each value added; in this way, sub-classes
 		// may provide additional logic about values added to the array object.
@@ -114,7 +121,6 @@ abstract class AbstractMapCollection implements MapCollection
 
 	public function toList(): ListCollection
 	{
-		/** @var GenericListCollection<T> */
 		return new GenericListCollection($this->collectionType, $this);
 	}
 

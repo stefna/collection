@@ -8,4 +8,13 @@ namespace Stefna\Collection;
  */
 final class GenericListCollection extends AbstractListCollection
 {
+	/**
+	 * @param class-string<T> $type
+	 * @param iterable<T> $data
+	 */
+	public function __construct(string $type, iterable $data = [])
+	{
+		$this->collectionType = $type;
+		parent::__construct($data);
+	}
 }

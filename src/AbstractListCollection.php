@@ -12,17 +12,24 @@ use Traversable;
  */
 abstract class AbstractListCollection implements ListCollection
 {
+	/** @var class-string<T> */
+	protected static string $defaultCollectionType;
+
+	/** @var class-string<T> */
+	protected string $collectionType;
+
 	/** @var Vector<T> */
 	protected Vector $data;
 
 	/**
-	 * @param class-string<T> $collectionType
 	 * @param iterable<T> $data
 	 */
 	public function __construct(
-		protected string $collectionType,
 		iterable $data = [],
 	) {
+		if (!isset($this->collectionType) && isset(self::$defaultCollectionType)) {
+			$this->collectionType = self::$defaultCollectionType;
+		}
 		$this->data = new Vector();
 		// Invoke offsetSet() for each value added; in this way, sub-classes
 		// may provide additional logic about values added to the array object.
