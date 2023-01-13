@@ -149,12 +149,22 @@ abstract class AbstractListCollection implements ListCollection
 
 	public function first()
 	{
-		return $this->data->first();
+		try {
+			return $this->data->first();
+		}
+		catch (\UnderflowException) {
+			return null;
+		}
 	}
 
 	public function last()
 	{
-		return $this->data->last();
+		try {
+			return $this->data->last();
+		}
+		catch (\UnderflowException) {
+			return null;
+		}
 	}
 
 	public function filter(callable $filter): static
