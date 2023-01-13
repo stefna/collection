@@ -280,4 +280,24 @@ final class GenericMapCollectionTest extends TestCase
 		$this->assertTrue($collection->contains($entity));
 		$this->assertFalse($collection->contains('not-found'));
 	}
+
+	public function testIndexBy(): void
+	{
+		$collection = new GenericMapCollection(ExtraEntity::class, [
+			'random1' => new ExtraEntity('1', 'index1'),
+			'random2' => new ExtraEntity('2', 'index2'),
+			'random3' => new ExtraEntity('3', 'index3'),
+			'random4' => new ExtraEntity('4', 'index4'),
+			'random5' => new ExtraEntity('5', 'index5'),
+		]);
+
+		$mapCollection = $collection->indexBy(fn (ExtraEntity $e) => $e->value2);
+
+		$index = 1;
+		foreach ($mapCollection as $key => $value) {
+			$this->assertSame('index' . $index, $key);
+			$this->assertInstanceOf(ExtraEntity::class, $value);
+			$index++;
+		}
+	}
 }

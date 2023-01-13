@@ -210,4 +210,24 @@ final class GenericListCollectionTest extends TestCase
 		$this->assertTrue($collection->isEmpty());
 		$this->assertNull($collection->last());
 	}
+
+	public function testIndexBy(): void
+	{
+		$collection = new GenericListCollection(ExtraEntity::class, [
+			new ExtraEntity('1', 'index1'),
+			new ExtraEntity('2', 'index2'),
+			new ExtraEntity('3', 'index3'),
+			new ExtraEntity('4', 'index4'),
+			new ExtraEntity('5', 'index5'),
+		]);
+
+		$mapCollection = $collection->indexBy(fn (ExtraEntity $e) => $e->value2);
+
+		$index = 1;
+		foreach ($mapCollection as $key => $value) {
+			$this->assertSame('index' . $index, $key);
+			$this->assertInstanceOf(ExtraEntity::class, $value);
+			$index++;
+		}
+	}
 }

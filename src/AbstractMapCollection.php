@@ -202,6 +202,18 @@ abstract class AbstractMapCollection implements MapCollection
 		return $collection;
 	}
 
+	public function indexBy(callable $callback): MapCollection
+	{
+		$newCollection = new GenericMapCollection($this->getType());
+
+		foreach ($this->data as $row) {
+			$newCollection[$callback($row)] = $row;
+		}
+
+		/** @var GenericMapCollection<T> $newCollection */
+		return $newCollection;
+	}
+
 	public function merge(Collection ...$collections): static
 	{
 		$newCollection = $this->data;

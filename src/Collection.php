@@ -45,4 +45,10 @@ interface Collection extends \Countable, \IteratorAggregate
 	 * @param Collection<T> ...$collections
 	 */
 	public function merge(Collection ...$collections): static;
+
+	/**
+	 * @param callable(T): string $callback
+	 * @return Collection<T>
+	 */
+	public function indexBy(callable $callback): Collection;
 }
