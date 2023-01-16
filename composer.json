@@ -1,5 +1,6 @@
 {
 	"name": "stefna/ds-collection",
+	"description": "Common collection classes for stefna",
 	"type": "library",
 	"minimum-stability": "dev",
 	"prefer-stable": true,
@@ -14,10 +15,29 @@
 		"php": "^8.2",
 		"ext-ds": "*"
 	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "dev-master",
+		"stefna/codestyle": "^1.12",
+		"phpstan/phpstan": "^1.8",
+		"bnf/phpstan-psr-container": "^1.0",
+		"phpunit/phpunit": "^9.5.25",
+		"phpstan/phpstan-phpunit": "^1.1",
+		"tomasvotruba/type-coverage": "^0.0.7",
+		"phpstan/extension-installer": "^1.2"
+	},
 	"autoload": {
 		"psr-4": {
 			"Stefna\\Collection\\": "src/"
 		}
 	},
-	"description": "Common collection classes for stefna"
+	"autoload-dev": {
+		"psr-4": {
+			"Stefna\\Collection\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"phpstan/extension-installer": true
+		}
+	}
 }
