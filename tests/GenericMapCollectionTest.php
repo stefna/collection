@@ -3,6 +3,7 @@
 namespace Stefna\Collection\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Stefna\Collection\AbstractListCollection;
 use Stefna\Collection\AbstractMapCollection;
 use Stefna\Collection\Exception\CollectionMismatchException;
 use Stefna\Collection\GenericListCollection;
@@ -299,5 +300,14 @@ final class GenericMapCollectionTest extends TestCase
 			$this->assertInstanceOf(ExtraEntity::class, $value);
 			$index++;
 		}
+	}
+
+	public function testDefaultCollectionType(): void
+	{
+		$collection = new class extends AbstractListCollection {
+			protected static string $defaultCollectionType = ExtraEntity::class;
+		};
+
+		$this->assertSame(ExtraEntity::class, $collection->getType());
 	}
 }

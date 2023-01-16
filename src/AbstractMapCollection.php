@@ -28,8 +28,8 @@ abstract class AbstractMapCollection implements MapCollection
 	public function __construct(
 		Map|array $data = [],
 	) {
-		if (!isset($this->collectionType) && isset(self::$defaultCollectionType)) {
-			$this->collectionType = self::$defaultCollectionType;
+		if (!isset($this->collectionType) && isset(static::$defaultCollectionType)) {
+			$this->collectionType = static::$defaultCollectionType;
 		}
 		$this->data = new Map();
 		// Invoke offsetSet() for each value added; in this way, sub-classes

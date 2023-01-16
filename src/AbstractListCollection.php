@@ -27,8 +27,8 @@ abstract class AbstractListCollection implements ListCollection
 	public function __construct(
 		iterable $data = [],
 	) {
-		if (!isset($this->collectionType) && isset(self::$defaultCollectionType)) {
-			$this->collectionType = self::$defaultCollectionType;
+		if (!isset($this->collectionType) && isset(static::$defaultCollectionType)) {
+			$this->collectionType = static::$defaultCollectionType;
 		}
 		$this->data = new Vector();
 		// Invoke offsetSet() for each value added; in this way, sub-classes
