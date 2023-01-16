@@ -54,7 +54,7 @@ abstract class AbstractListCollection implements ListCollection
 	/**
 	 * @param array-key $offset The offset to check.
 	 */
-	public function offsetExists($offset): bool
+	public function offsetExists(mixed $offset): bool
 	{
 		return isset($this->data[$offset]);
 	}
@@ -63,7 +63,7 @@ abstract class AbstractListCollection implements ListCollection
 	 * @param int $offset The offset for which a value should be returned.
 	 * @return T|null the value stored at the offset, or null if the offset does not exist.
 	 */
-	public function offsetGet($offset): ?object
+	public function offsetGet(mixed $offset): ?object
 	{
 		try {
 			return $this->data->get($offset);
@@ -77,7 +77,7 @@ abstract class AbstractListCollection implements ListCollection
 	 * @param int|null $offset
 	 * @param T $value The value to set at the given offset.
 	 */
-	public function offsetSet($offset, mixed $value): void
+	public function offsetSet(mixed $offset, mixed $value): void
 	{
 		if (!$value instanceof $this->collectionType) {
 			throw new \TypeError('Invalid type for collection. Expected: ' . $this->collectionType);
@@ -99,7 +99,7 @@ abstract class AbstractListCollection implements ListCollection
 	 *
 	 * @param array-key $offset The offset to remove from the array.
 	 */
-	public function offsetUnset($offset): void
+	public function offsetUnset(mixed $offset): void
 	{
 		$this->data->remove($offset);
 	}
