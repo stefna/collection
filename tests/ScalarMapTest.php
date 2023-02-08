@@ -142,7 +142,7 @@ final class ScalarMapTest extends TestCase
 	/**
 	 * @return array<string, array{0:string,1:null|bool}>
 	 */
-	public function boolKeys(): array
+	public static function boolKeys(): array
 	{
 		return [
 			'testBool' => ['testBool', false],
