@@ -1,5 +1,9 @@
 # Collection
 
+[![Build Status](https://github.com/stefna/collection/actions/workflows/continuous-integration.yml/badge.svg?branch=main)](https://github.com/stefna/collection/actions/workflows/continuous-integration.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/stefna/ds-collection.svg)](https://packagist.org/packages/stefna/ds-collection)
+[![Software License](https://img.shields.io/github/license/stefna/collection.svg)](LICENSE)
+
 This package is a lightweight config loader with type safety as the primary
 corner stone.
 
