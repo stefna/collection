@@ -20,7 +20,7 @@
 		"stefna/codestyle": "^1.15",
 		"phpstan/phpstan": "^1.10",
 		"bnf/phpstan-psr-container": "^1.0",
-		"phpunit/phpunit": "^10.0",
+		"phpunit/phpunit": "^10.5",
 		"phpstan/phpstan-phpunit": "^1.1",
 		"tomasvotruba/type-coverage": "^0.0.7",
 		"phpstan/extension-installer": "^1.3"
