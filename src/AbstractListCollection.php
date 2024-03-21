@@ -201,6 +201,11 @@ abstract class AbstractListCollection implements ListCollection
 		return $newCollection;
 	}
 
+	public function column(callable $callback): array
+	{
+		return $this->data->map($callback)->toArray();
+	}
+
 	public function merge(Collection ...$collections): static
 	{
 		$newCollection = $this->data;

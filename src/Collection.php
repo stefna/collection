@@ -51,4 +51,11 @@ interface Collection extends \Countable, \IteratorAggregate
 	 * @return Collection<T>
 	 */
 	public function indexBy(callable $callback): Collection;
+
+	/**
+	 * @template R
+	 * @param callable(T): R $callback
+	 * @return list<R>
+	 */
+	public function column(callable $callback): array;
 }

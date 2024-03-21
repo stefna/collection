@@ -260,4 +260,21 @@ final class GenericListCollectionTest extends TestCase
 			$this->assertSame($expectedValues[$index], $value->value);
 		}
 	}
+
+	public function testColumn(): void
+	{
+		$collection1 = new GenericListCollection(RandomEntity::class, [
+			new RandomEntity(1),
+			new RandomEntity(2),
+			new RandomEntity(3),
+			new RandomEntity(4),
+			new RandomEntity(5),
+		]);
+
+		$values = $collection1->column(fn (RandomEntity $r) => $r->value);
+
+		$this->assertCount(5, $values);
+		$this->assertIsList($values);
+		$this->assertSame([1, 2, 3, 4, 5], $values);
+	}
 }
