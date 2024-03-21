@@ -41,4 +41,9 @@ interface ListCollection extends \ArrayAccess, Collection
 	 * @return MapCollection<T>
 	 */
 	public function indexBy(callable $callback): MapCollection;
+
+	/**
+	 * @return ListCollection<T>
+	 */
+	public function slice(int $index, ?int $length = null): ListCollection;
 }
