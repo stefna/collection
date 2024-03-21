@@ -20,10 +20,11 @@ jobs:
           - "highest"
         php-version:
           - "8.2"
+          - "8.3"
         experimental:
           - false
         include:
-          - php-version: "8.3"
+          - php-version: "8.4"
             composer-options: "--ignore-platform-reqs"
             experimental: true
             dependencies: "highest"
