@@ -4,5 +4,4 @@ namespace Stefna\Collection\Exception;
 
 final class CollectionMismatchException extends \DomainException
 {
-
 }

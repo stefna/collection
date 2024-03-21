@@ -7,7 +7,6 @@ use Stefna\Collection\AbstractListCollection;
 use Stefna\Collection\AbstractMapCollection;
 use Stefna\Collection\Exception\CollectionMismatchException;
 use Stefna\Collection\GenericListCollection;
-use Stefna\Collection\GenericMapCollection;
 use Stefna\Collection\Tests\Stub\ExtraEntity;
 use Stefna\Collection\Tests\Stub\RandomEntity;
 
@@ -153,7 +152,7 @@ final class GenericListCollectionTest extends TestCase
 		$collection1 = new GenericListCollection(RandomEntity::class, [
 			new RandomEntity('2'),
 		]);
-		$collection2 = new class  extends AbstractMapCollection {
+		$collection2 = new class extends AbstractMapCollection {
 			protected static string $defaultCollectionType = ExtraEntity::class;
 		};
 
