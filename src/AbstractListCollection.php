@@ -225,4 +225,11 @@ abstract class AbstractListCollection implements ListCollection
 
 		return $mergedCollection;
 	}
+
+	public function slice(int $index, ?int $length = null): ListCollection
+	{
+		$newCollection = clone $this;
+		$newCollection->data = $this->data->slice($index, $length);
+		return $newCollection;
+	}
 }
