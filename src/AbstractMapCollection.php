@@ -214,6 +214,15 @@ abstract class AbstractMapCollection implements MapCollection
 		return $newCollection;
 	}
 
+	public function column(callable $callback): array
+	{
+		$column = [];
+		foreach ($this->data as $row) {
+			$column[] = $callback($row);
+		}
+		return $column;
+	}
+
 	public function merge(Collection ...$collections): static
 	{
 		$newCollection = $this->data;

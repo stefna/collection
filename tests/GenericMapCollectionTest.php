@@ -310,4 +310,21 @@ final class GenericMapCollectionTest extends TestCase
 
 		$this->assertSame(ExtraEntity::class, $collection->getType());
 	}
+
+	public function testColumn(): void
+	{
+		$collection1 = new GenericMapCollection(RandomEntity::class, [
+			'key1' => new RandomEntity('1'),
+			'key2' => new RandomEntity('2'),
+			'key3' => new RandomEntity('3'),
+			'key4' => new RandomEntity('4'),
+			'key5' => new RandomEntity('5'),
+		]);
+
+		$values = $collection1->column(fn (RandomEntity $r) => $r->value);
+
+		$this->assertCount(5, $values);
+		$this->assertIsList($values);
+		$this->assertSame(['1', '2', '3', '4', '5'], $values);
+	}
 }
