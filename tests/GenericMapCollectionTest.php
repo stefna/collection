@@ -327,4 +327,16 @@ final class GenericMapCollectionTest extends TestCase
 		$this->assertIsList($values);
 		$this->assertSame(['1', '2', '3', '4', '5'], $values);
 	}
+
+	public function testClear(): void
+	{
+		$element = new RandomEntity(1);
+		$collection = new GenericMapCollection(RandomEntity::class, [
+			'element1' => $element,
+		]);
+
+		$this->assertCount(1, $collection);
+		$collection->clear();
+		$this->assertCount(0, $collection);
+	}
 }
