@@ -119,6 +119,14 @@ abstract class AbstractMapCollection implements MapCollection
 		return $this->data->toArray();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function getArrayCopy(): array
+	{
+		return $this->data->toArray();
+	}
+
 	public function toList(): ListCollection
 	{
 		return new GenericListCollection($this->collectionType, $this);

@@ -16,9 +16,15 @@ interface Collection extends \Countable, \IteratorAggregate
 	public function isEmpty(): bool;
 
 	/**
+	 * @deprecated Use getArrayCopy
 	 * @return T[]
 	 */
 	public function toArray(): array;
+
+	/**
+	 * @return T[]
+	 */
+	public function getArrayCopy(): array;
 
 	public function clear(): void;
 

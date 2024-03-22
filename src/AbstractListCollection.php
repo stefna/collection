@@ -122,6 +122,14 @@ abstract class AbstractListCollection implements ListCollection
 		return $this->data->toArray();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function getArrayCopy(): array
+	{
+		return $this->data->toArray();
+	}
+
 	public function isEmpty(): bool
 	{
 		return $this->data->isEmpty();
