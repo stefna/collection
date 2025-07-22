@@ -20,7 +20,7 @@ final class ScalarMapTest extends TestCase
 	{
 		$map = $this->createMap();
 		$value = $map->getString('testStringNotFound', 'random');
-		$this->assertIsString($value);
+		$this->assertIsString($value); // @phpstan-ignore method.alreadyNarrowedType
 		$this->assertSame('random', $value);
 	}
 
@@ -55,7 +55,7 @@ final class ScalarMapTest extends TestCase
 	{
 		$map = $this->createMap();
 		$value = $map->getInt('testIntNotFound', 42);
-		$this->assertIsInt($value);
+		$this->assertIsInt($value); // @phpstan-ignore method.alreadyNarrowedType
 		$this->assertSame(42, $value);
 	}
 
@@ -76,7 +76,7 @@ final class ScalarMapTest extends TestCase
 	{
 		$map = $this->createMap();
 		$value = $map->getFloat('testFloatNotFound', 42.1);
-		$this->assertIsFloat($value);
+		$this->assertIsFloat($value); // @phpstan-ignore method.alreadyNarrowedType
 		$this->assertSame(42.1, $value);
 	}
 
@@ -100,7 +100,7 @@ final class ScalarMapTest extends TestCase
 	{
 		$map = $this->createMap();
 		$value = $map->getBool('testBoolNotFound', true);
-		$this->assertIsBool($value);
+		$this->assertIsBool($value); // @phpstan-ignore method.alreadyNarrowedType
 		$this->assertTrue($value);
 	}
 

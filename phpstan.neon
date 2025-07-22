@@ -2,6 +2,7 @@ parameters:
 	level: max
 	paths:
 		- src
+		- tests
 	type_coverage:
 		return_type: 90
 		param_type: 100

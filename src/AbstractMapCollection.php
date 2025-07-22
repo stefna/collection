@@ -31,10 +31,11 @@ abstract class AbstractMapCollection implements MapCollection
 		if (!isset($this->collectionType) && isset(static::$defaultCollectionType)) {
 			$this->collectionType = static::$defaultCollectionType;
 		}
-		$this->data = new Map();
+		$this->data = new Map(); // @phpstan-ignore assign.propertyType
 		// Invoke offsetSet() for each value added; in this way, sub-classes
 		// may provide additional logic about values added to the array object.
 		foreach ($data as $key => $value) {
+			// @phpstan-ignore function.alreadyNarrowedType
 			if (!is_string($key)) {
 				throw new \BadMethodCallException('Must specify key');
 			}
@@ -83,6 +84,7 @@ abstract class AbstractMapCollection implements MapCollection
 		if (!$value instanceof $this->collectionType) {
 			throw new \TypeError('Invalid type for collection. Expected: ' . $this->collectionType);
 		}
+		// @phpstan-ignore function.alreadyNarrowedType
 		if (!is_string($offset)) {
 			throw new \InvalidArgumentException('Offset must be of type string');
 		}
@@ -108,7 +110,7 @@ abstract class AbstractMapCollection implements MapCollection
 
 	public function clear(): void
 	{
-		$this->data = new Map();
+		$this->data = new Map(); // @phpstan-ignore assign.propertyType
 	}
 
 	/**

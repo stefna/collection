@@ -297,7 +297,7 @@ final class GenericMapCollectionTest extends TestCase
 		$index = 1;
 		foreach ($mapCollection as $key => $value) {
 			$this->assertSame('index' . $index, $key);
-			$this->assertInstanceOf(ExtraEntity::class, $value);
+			$this->assertInstanceOf(ExtraEntity::class, $value); // @phpstan-ignore method.alreadyNarrowedType
 			$index++;
 		}
 	}
@@ -324,7 +324,7 @@ final class GenericMapCollectionTest extends TestCase
 		$values = $collection1->column(fn (RandomEntity $r) => $r->value);
 
 		$this->assertCount(5, $values);
-		$this->assertIsList($values);
+		$this->assertIsList($values); // @phpstan-ignore method.alreadyNarrowedType
 		$this->assertSame(['1', '2', '3', '4', '5'], $values);
 	}
 
