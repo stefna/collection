@@ -191,8 +191,12 @@ abstract class AbstractListCollection implements ListCollection
 
 	public function map(callable $callback): ListCollection
 	{
+		if ($this->data->isEmpty()) {
+			return new GenericListCollection($this->collectionType); // @phpstan-ignore return.type
+		}
 		$newData = $this->data->map($callback);
-		$collection = new GenericListCollection(get_class($newData->first()));
+		$collectionType = $newData->first()::class;
+		$collection = new GenericListCollection($collectionType);
 		$collection->data = $newData;
 		return $collection;
 	}

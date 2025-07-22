@@ -201,6 +201,18 @@ final class GenericMapCollectionTest extends TestCase
 		$this->assertSame($value, $newCollection->first()?->value);
 	}
 
+	public function testMapOnEmptyCollection(): void
+	{
+		$collection1 = new GenericMapCollection(RandomEntity::class, []);
+
+		$newCollection = $collection1->map(fn (string $key, RandomEntity $entity): ExtraEntity => new ExtraEntity((string)$entity->value));
+
+		$this->assertNotSame($collection1, $newCollection);
+		$this->assertCount(0, $newCollection);
+		// the collection type stays the same since the collection is empty and hence can't change
+		$this->assertSame($collection1->getType(), $newCollection->getType());
+	}
+
 	public function testFilter(): void
 	{
 		$collection1 = new GenericMapCollection(RandomEntity::class, [
