@@ -104,6 +104,10 @@ abstract class AbstractListCollection implements ListCollection
 		$this->data->remove($offset);
 	}
 
+	/**
+	 * @phpstan-assert-if-true T $this->first()
+	 * @phpstan-assert-if-true T $this->last()
+	 */
 	public function count(): int
 	{
 		return $this->data->count();
@@ -130,6 +134,10 @@ abstract class AbstractListCollection implements ListCollection
 		return $this->data->toArray();
 	}
 
+	/**
+	 * @phpstan-assert-if-false T $this->first()
+	 * @phpstan-assert-if-false T $this->last()
+	 */
 	public function isEmpty(): bool
 	{
 		return $this->data->isEmpty();

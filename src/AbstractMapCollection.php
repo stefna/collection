@@ -103,6 +103,10 @@ abstract class AbstractMapCollection implements MapCollection
 		$this->data->remove($offset, null);
 	}
 
+	/**
+	 * @phpstan-assert-if-true T $this->first()
+	 * @phpstan-assert-if-true T $this->last()
+	 */
 	public function count(): int
 	{
 		return $this->data->count();
@@ -134,6 +138,10 @@ abstract class AbstractMapCollection implements MapCollection
 		return new GenericListCollection($this->collectionType, $this);
 	}
 
+	/**
+	 * @phpstan-assert-if-false T $this->first()
+	 * @phpstan-assert-if-false T $this->last()
+	 */
 	public function isEmpty(): bool
 	{
 		return $this->data->isEmpty();
